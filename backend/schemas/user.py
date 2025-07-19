@@ -1,4 +1,4 @@
-from pydantic import BaseModel, EmailStr, Field
+from pydantic import BaseModel, EmailStr, Field, ConfigDict  # Nuevo import
 
 class UserCreate(BaseModel):
     email: EmailStr
@@ -9,5 +9,6 @@ class ShowUser(BaseModel):
     email:EmailStr
     is_active:bool
 
-    class Config():
-        orm_mode=True
+    model_config = ConfigDict(from_attributes=True)  # ¡Sintaxis nueva!
+    #class Config():
+    #    from_attributes = True  # ← Nuevo nombre
